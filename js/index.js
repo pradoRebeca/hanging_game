@@ -9,6 +9,7 @@ const limparElementos = (nameEmelemto) => {
 };
 
 const ListarPais = async () => {
+
   limparElementos("#cardPalavra");
   const urlListar = `https://servicodados.ibge.gov.br/api/v1/localidades/paises?orderBy=nome`;
   const options = {

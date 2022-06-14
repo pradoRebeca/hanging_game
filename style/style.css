@@ -76,12 +76,12 @@ body{
     /* flex-wrap: wrap; */
     max-width: 70vw;
     margin-bottom: 20px;
-    background-color: yellow;
+    /* background-color: yellow; */
     min-height: 20vh;
 }
 
 #cardPalavra{
-    background-color: #4b7db3;
+    /* background-color: #4b7db3; */
     width: 50vw;
     display: flex;
     align-items: center;
@@ -143,8 +143,9 @@ body{
 }
 
 .caractere{
-    background-color: yellow;
-    width: 25px;
+    /* background-color: yellow; */
+    text-align: center;
+    width: 28px;
     height: 30px;
-    font-size: 1.5em;
+    font-size: 2em;
 }
