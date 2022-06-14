@@ -1,0 +1,150 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+    font-family: 'verdana';
+}
+
+:cores{
+    --text--color: #4b7db3; 
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#cardLetra{
+    /* background-color: #ebebeb; */
+    background-color: #f5f2f2;
+    display: flex;
+    max-width: 70vw;
+    min-height: 30vh;
+    padding: 20px;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;
+    border-radius: 20px;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+    /* box-shadow: 1px 2px 1em #d1d1d1; */
+}
+
+.letras{
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 2em;
+    /* background-color: yellow; */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    /* border-color:  var(--text--color); */
+    border: 2px solid #4b7db3;
+}
+
+.letras:hover{
+    cursor: pointer;
+    background-color: #4b7db3;
+    color: white;
+    /* width: 45px;
+    height: 45px; */
+}
+
+
+#cardPersonagem{
+    max-width: 20vw;
+    max-height: 20vw;
+    /* background-color: #4b7db3; */
+}
+
+#imgPersonagem{
+    max-width: inherit;
+    max-height: inherit;
+}
+
+#cardPalavraPersonagem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    max-width: 70vw;
+    margin-bottom: 20px;
+    background-color: yellow;
+    min-height: 20vh;
+}
+
+#cardPalavra{
+    background-color: #4b7db3;
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+#btnPalavraAleatoria{
+    width: 160px;
+    height: 40px;
+    background-color: #4b7db3;
+    border: 0px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1em;
+}
+
+#btnPalavraAleatoria:hover{
+    cursor: pointer;
+    background-color: #78a2cf;
+}
+
+
+
+#cardButtonInput{
+    /* background-color: yellow; */
+    /* flex-wrap: wrap; */
+    max-width: 70vw;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+}
+
+#cardInput{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    /* background-color: aqua; */
+}
+
+#cardInput > p{
+    /* background-color: aliceblue; */
+    margin-right: 10px;
+    font-size: 1em;
+}
+
+#cardInput > input {
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 1em;
+    border: 2px solid #4b7db3;
+    /* border-bottom:  2px solid #4b7db3; */
+}
+
+.caractere{
+    background-color: yellow;
+    width: 25px;
+    height: 30px;
+    font-size: 1.5em;
+}
