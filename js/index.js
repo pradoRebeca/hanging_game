@@ -8,7 +8,26 @@ const limparElementos = (nameEmelemto) => {
   }
 };
 
+let arrayPalavra;
+
+let posicaoLetra = [];
+
+let letrasDaPalavra = [];
+let letrasEscolhidas = [];
+let replace = [];
+var indices = [];
+let quantidadeErros = 0;
+
 const ListarPais = async () => {
+  letrasDaPalavra = [];
+  replace = [];
+  indices = [];
+  letrasEscolhidas = [];
+  quantidadeErros = 0;
+
+  exibirLetrasEscolhidas();
+
+  console.log("letrasescokhidas => ", letrasEscolhidas);
 
   limparElementos("#cardPalavra");
   const urlListar = `https://servicodados.ibge.gov.br/api/v1/localidades/paises?orderBy=nome`;
@@ -67,28 +86,41 @@ const exibirAlfabeto = (letra) => {
   container.appendChild(div);
 };
 
-const substituirPalavraUnderline = () => {
+const exibirLetrasEscolhidas = () => {
+  const container = document.querySelector("#cardLetrasEscolhidas");
+  const p = document.createElement("p");
+
+  p.classList.add("letrasEscolhidas");
+  letrasEscolhidas.map((letra) => (p.innerHTML = letra));
+
+  container.appendChild(p);
+};
+
+const validacao = (caractere) => {
+  if (caractere == "-" || caractere == "(" || caractere ==  ")") {
+   return caractere;
+  } else if(caractere == ' '){
+    return '-'
+  }else {
+    return  '_'
+  }
+}
+
+const substituirPalavraUnderline = (letra) => {
   const container = document.querySelector("#cardPalavra");
   const div = document.createElement("p");
+  let caractere =  validacao(letra)
 
   div.classList.add("caractere");
-  div.innerHTML = "_";
+  div.innerHTML = caractere;
 
   container.appendChild(div);
 };
 
-let arrayPalavra;
-
-let posicaoLetra = [];
-
-let letrasDaPalavra = [];
-
-let replace = [];
-var indices = [];
-
 const formarPalavra = () => {
   limparElementos("#cardPalavra");
-  const replace = arrayPalavra.map((caractere) => (caractere = "_"));
+  const replace = arrayPalavra.map((caractere) => caractere =  validacao(caractere));
+
   indices.map(({ indice, letra }) => (replace[indice] = letra));
 
   replace.map((caractere) => exibirLetraDaPalavra(caractere));
@@ -104,36 +136,46 @@ const exibirLetraDaPalavra = (letra) => {
   container.appendChild(div);
 };
 
-console.log(arrayPalavra);
-
 const existeNaPalavra = (e) => {
   const letra = e.target.id;
 
-  const verificar = arrayPalavra.filter(
-    (item) => item == letra.toUpperCase() || item == letra.toLowerCase()
+  letrasEscolhidas.push(letra);
+
+  const quantiadadeRepeticoes = letrasEscolhidas.filter(
+    (item) => item == letra
   );
 
-  if (verificar.length != 0) {
-    var idx = arrayPalavra.indexOf(verificar[0]);
+  if (quantidadeErros < 7) {
+    if (quantiadadeRepeticoes.length < 2 ) {
+      exibirLetrasEscolhidas();
 
-    while (idx != -1) {
-      indices.push({ indice: idx, letra: letra });
-      // posicaoLetra.push({indice: idx, letra: letra})
-      idx = arrayPalavra.indexOf(verificar[0], idx + 1);
-    }
+      const verificar = arrayPalavra.filter(
+        (item) => item == letra.toUpperCase() || item == letra.toLowerCase()
+      );
 
-    console.log("indices =>", indices);
-    letrasDaPalavra.push(letra);
+      if (verificar.length != 0) {
+        var idx = arrayPalavra.indexOf(verificar[0]);
 
-    console.log("letrasDaPalavra", letrasDaPalavra);
-    console.log(arrayPalavra);
+        while (idx != -1) {
+          indices.push({ indice: idx, letra: letra });
+          idx = arrayPalavra.indexOf(verificar[0], idx + 1);
+        }
 
-    formarPalavra();
-    // exibirLetraDaPalavra(letra, indices);
+        letrasDaPalavra.push(letra);
 
-    // const exibirLetra = indices.map((item) => (replace[item] = letra));
-  } else {
-    console.log("tem essa letra não");
+        formarPalavra();
+      } else {
+        quantidadeErros = quantidadeErros + 1;
+        console.log("tem essa letra não");
+      }
+    } 
+  }else {
+    swal({
+      title: "Derrotado",
+      text: "Calma amigo, uma hora você consegue (eu acho)",
+      button: "Aceitar Derrota",
+    });
+    console.log("perdeu otario");
   }
 };
 
@@ -149,18 +191,15 @@ const palavraGerada = (json) => {
 
   let nomePais = arrayNomePais
     .filter((_item, index) => index === numero)
-    .toString().normalize("NFD");
-
-
-
+    .toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase();
 
   arrayPalavra = nomePais.split("");
 
-  arrayPalavra = arrayPalavra.map((item) => item.toUpperCase());
-
+  console.log("arrayPalavra => ", arrayPalavra);
   arrayPalavra.map((letra) => substituirPalavraUnderline(letra));
-
-  // pais.map((item) => (item == ' ' || item == '-') ? exibirPalavra('-') : exibirPalavra());
 };
 
 document

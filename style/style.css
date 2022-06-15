@@ -44,6 +44,7 @@ body{
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    margin-bottom: 10px;
     /* border-color:  var(--text--color); */
     border: 2px solid #4b7db3;
 }
@@ -149,3 +150,37 @@ body{
     height: 30px;
     font-size: 2em;
 }
+
+#cardLetrasEscolhidas{
+    /* background-color: #f7b925; */
+    max-width: 70vw;
+    max-height: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+}
+
+.letrasEscolhidas{
+/* background-color: aquamarine; */
+    margin-left: 2px;
+    
+}
+
+
+.swal-overlay {
+    background-color: rgba(75, 125, 179, 0.45);
+  }
+
+
+  .swal-button {
+    /* padding: 7px 19px;
+    border-radius: 2px; */
+    background-color: #4b7db3;
+    /* font-size: 12px; */
+    border: 1px solid #4b7db3;
+    /* text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3); */
+  }
