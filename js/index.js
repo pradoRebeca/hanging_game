@@ -11,7 +11,7 @@ const limparElementos = (nameEmelemto) => {
 let arrayPalavra;
 
 let posicaoLetra = [];
-
+let nomePais;
 let letrasDaPalavra = [];
 let letrasEscolhidas = [];
 let replace = [];
@@ -26,6 +26,7 @@ const ListarPais = async () => {
   quantidadeErros = 0;
   limparElementos("#cardLetrasEscolhidas");
   limparElementos("#cardPalavra");
+  trocarImagem()
 
   const urlListar = `https://servicodados.ibge.gov.br/api/v1/localidades/paises?orderBy=nome`;
   const options = {
@@ -141,6 +142,9 @@ const trocarImagem = () => {
   const img = document.getElementById("imgPersonagem");
 
   switch (quantidadeErros) {
+    case 0:
+      img.src = "../img/forca.png";
+      break;
     case 1:
       img.src = "../img/cabeca.png";
       break;
@@ -199,11 +203,40 @@ const existeNaPalavra = (e) => {
       }
     }
   } else {
-    swal({
-      title: "Derrotado",
-      text: "Calma amigo, uma hora você consegue (eu acho)",
-      button: "Aceitar Derrota",
+    // swal({
+    //   title: "Derrotado",
+    //   text: "Calma amigo, uma hora você consegue (eu acho)",
+    //   button: "Aceitar Derrota",
+    // });
+
+
+    swal("Derrotado?", {
+      buttons: {
+        jogo: {
+          text: "Novo Jogo",
+          value: "novoJogo",
+        },
+        palavra: {
+          text: "Ver Palavra",
+          value: "verPalavra",
+        },
+      },
+    })
+    .then((value) => {
+      switch (value) {
+     
+        case "novoJogo":
+          ListarPais()
+          break;
+     
+        case "verPalavra":
+          swal("A palavra era:", nomePais);
+          break;
+      }
     });
+
+
+
     console.log("perdeu otario");
   }
 };
@@ -218,7 +251,7 @@ const palavraGerada = (json) => {
 
   let numero = numeroAleatorio(arrayNomePais.length);
 
-  let nomePais = arrayNomePais
+  nomePais = arrayNomePais
     .filter((_item, index) => index === numero)
     .toString()
     .normalize("NFD")

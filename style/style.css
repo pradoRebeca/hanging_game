@@ -98,7 +98,8 @@ body{
     border: 0px;
     border-radius: 5px;
     color: #fff;
-    font-size: 1em;
+    font-size: 0.9em;
+    font-weight: 700;
 }
 
 #btnPalavraAleatoria:hover{
@@ -154,7 +155,7 @@ body{
 #cardLetrasEscolhidas{
     /* background-color: #f7b925; */
     max-width: 70vw;
-    max-height: 30px;
+    height: 30px;
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
@@ -167,7 +168,6 @@ body{
 .letrasEscolhidas{
 /* background-color: aquamarine; */
     margin-left: 2px;
-    
 }
 
 
