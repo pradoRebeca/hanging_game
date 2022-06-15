@@ -79,10 +79,13 @@ body{
     margin-bottom: 20px;
     /* background-color: yellow; */
     min-height: 20vh;
+    /* border: 2px solid #4b7db3; */
 }
 
 #cardPalavra{
-    /* background-color: #4b7db3; */
+    /* border: 2px solid #4b7db3; */
+    background-color: #4b7db3;
+    border-radius: 20px;
     width: 50vw;
     display: flex;
     align-items: center;
@@ -146,6 +149,7 @@ body{
 
 .caractere{
     /* background-color: yellow; */
+    /* color: white; */
     text-align: center;
     width: 28px;
     height: 30px;
@@ -153,6 +157,7 @@ body{
 }
 
 #cardLetrasEscolhidas{
+      background-color: #f5f2f2;
     /* background-color: #f7b925; */
     max-width: 70vw;
     height: 30px;
