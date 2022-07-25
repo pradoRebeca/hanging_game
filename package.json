@@ -1,0 +1,19 @@
+{
+  "name": "forca",
+  "version": "1.0.0",
+  "description": "Jogo da forca ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pradoRebeca/jogo_forca.git"
+  },
+  "author": "Rebeca Prado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pradoRebeca/jogo_forca/issues"
+  },
+  "homepage": "https://github.com/pradoRebeca/jogo_forca#readme"
+}

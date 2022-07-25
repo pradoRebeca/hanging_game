@@ -1,0 +1,56 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+    font-family: 'verdana';
+}
+
+body{
+	width: 100vw;
+	height: 100vh;
+	background-color: #f7b925;
+	flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+h5{
+	width: 100%;
+	height: 20%;
+	background-color:bisque ;
+}
+
+#content-card{
+	width: 100%;
+	height: 80%;
+	background-color: black;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.content{
+	min-width: 60vw;
+	min-height: 80vh;
+	background-color: white;
+	flex-direction: column;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#card-logo{
+	background-color: tomato;
+	width: 48%;
+	height: 100%;
+}
+
+
+#card-temas{
+	display: flex;
+	flex-direction: column;
+	width: 48%;
+	height: 100%;
+	background-color: aquamarine;
+}
