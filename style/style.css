@@ -149,7 +149,7 @@ body{
 
 .caractere{
     /* background-color: yellow; */
-    /* color: white; */
+    color: white;
     text-align: center;
     width: 28px;
     height: 30px;
@@ -181,7 +181,7 @@ body{
   }
 
 
-  .swal-button {
+.swal-button {
     /* padding: 7px 19px;
     border-radius: 2px; */
     background-color: #4b7db3;

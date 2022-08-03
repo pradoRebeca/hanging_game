@@ -26,7 +26,7 @@ const ListarPais = async () => {
   quantidadeErros = 0;
   limparElementos("#cardLetrasEscolhidas");
   limparElementos("#cardPalavra");
-  trocarImagem()
+  trocarImagem();
 
   const urlListar = `https://servicodados.ibge.gov.br/api/v1/localidades/paises?orderBy=nome`;
   const options = {
@@ -177,7 +177,7 @@ const existeNaPalavra = (e) => {
     (item) => item == letra
   );
 
-  if (quantidadeErros <6) {
+  if (quantidadeErros < 6) {
     if (quantiadadeRepeticoes.length < 2) {
       exibirLetrasEscolhidas();
 
@@ -203,13 +203,6 @@ const existeNaPalavra = (e) => {
       }
     }
   } else {
-    // swal({
-    //   title: "Derrotado",
-    //   text: "Calma amigo, uma hora você consegue (eu acho)",
-    //   button: "Aceitar Derrota",
-    // });
-
-
     swal("Derrotado?", {
       buttons: {
         jogo: {
@@ -221,23 +214,17 @@ const existeNaPalavra = (e) => {
           value: "verPalavra",
         },
       },
-    })
-    .then((value) => {
+    }).then((value) => {
       switch (value) {
-     
         case "novoJogo":
-          ListarPais()
+          ListarPais();
           break;
-     
+
         case "verPalavra":
           swal("A palavra era:", nomePais);
           break;
       }
     });
-
-
-
-    console.log("perdeu otario");
   }
 };
 
