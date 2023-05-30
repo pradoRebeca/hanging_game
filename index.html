@@ -7,8 +7,9 @@
     <link href="./style/style.css"
 		  type="text/css"
 		  rel="stylesheet">
-    <script src="./js/index.js" defer ></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./js/index.js" type="module"></script>
+
     <title>Jogo da Forca</title>
 </head>
 <body>
@@ -17,21 +18,13 @@
             <div id="cardPersonagem">
                 <img id="imgPersonagem" src='./img/forca.png' />
             </div>
-            <div id="cardPalavra">
-                
-            </div>
+            <div id="cardPalavra"></div>
         </div>
-       <div id="cardLetrasEscolhidas">
+       <div id="cardLetrasEscolhidas"></div>
 
-       </div>
-
-        <div id="cardLetra">
-
-        </div>
+        <div id="cardLetra"></div>
 
         <div id="cardButtonInput">
-
-        
             <button id="btnPalavraAleatoria">Outra Palavra</button>
         </div>
     </div>
