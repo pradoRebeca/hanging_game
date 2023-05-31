@@ -1,0 +1,16 @@
+.cardTheme{
+    width: inherit;
+    min-height: 50px;
+    color: "#fff";
+    background-color: "#4b7db3";
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+}
+
+.cardTheme:hover{
+    cursor: pointer;
+    background-color: "#78a2cf";
+    height: 10px;
+}

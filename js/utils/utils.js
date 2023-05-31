@@ -1,3 +1,5 @@
+import { themes } from "../api.js";
+
 export const alphabet = [
   "A",
   "B",
@@ -28,13 +30,13 @@ export const alphabet = [
 ];
 
 export const nameImages = [
-  "forca.png",
-  "cabeca.png",
-  "tronco.png",
-  "bracoDireito.png",
-  "bracoEsquerdo.png",
-  "pernaDireita.png",
-  "pernaEsquerda.png",
+  "hangman.jpg",
+  "head.jpg",
+  "trunk.jpg",
+  "armLeft.jpg",
+  "armRigth.jpg",
+  "legRigth.jpg",
+  "body.jpg",
 ];
 
 export function validateCaractere(caractere) {
@@ -71,4 +73,16 @@ export function generateWordArray(json) {
     word,
     arrayWord,
   };
+}
+
+export function listThemes() {
+  const arrayKeys = Object.keys(themes);
+
+  return arrayKeys.map((theme) => themes[theme].name);
+}
+
+export function getUrlByTheme(theme) {
+  const arrayKeys = Object.values(themes);
+  const infoTheme = arrayKeys.filter((item) => item.name == theme);
+  return infoTheme.url
 }

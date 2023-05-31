@@ -1,3 +1,4 @@
+import { setGameTheme } from "../home.js";
 import { existeNaPalavra } from "../index.js";
 import { nameImages } from "./utils.js";
 
@@ -35,15 +36,28 @@ export function showAlphabet(letter) {
   container.appendChild(div);
 }
 
+export function showThemes(theme) {
+  const container = document.querySelector("#card-theme");
+  const div = document.createElement("div");
+
+  div.classList.add("cardTheme");
+  div.id = theme;
+  div.innerHTML = theme;
+  div.onclick = setGameTheme;
+
+  container.appendChild(div);
+}
+
 export function cleanElement(elementName) {
   const elemento = document.querySelector(elementName);
-  while (elemento.firstChild) {
+  while (elemento?.firstChild) {
     elemento.removeChild(elemento.lastChild);
   }
 }
 
 export function changeHangmanImage(amountErrors) {
   const img = document.getElementById("imgPersonagem");
+
   const image = nameImages.filter((_image, index) => index == amountErrors)[0];
 
   img.src = `../img/${image}`;

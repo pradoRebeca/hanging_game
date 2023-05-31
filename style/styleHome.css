@@ -54,3 +54,13 @@ h5{
 	height: 100%;
 	background-color: aquamarine;
 }
+
+.card-theme{
+    width: inherit;
+    min-height: 100px;
+    color: "#fff";
+    background-color: "#4b7db3";
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}

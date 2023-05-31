@@ -14,6 +14,8 @@ import {
   validateCaractere,
   verifyLetterInWord,
   generateWordArray,
+  listThemes,
+  getUrlByTheme,
 } from "./utils/utils.js";
 
 let arrayWord = [];
@@ -23,7 +25,29 @@ let letterIndexInWord = [];
 let amountErrors = [];
 let replaceWord = 0;
 
+const getThemeUrl = () => {
+  const themeUrl = location.search.split("=")[1];
+
+  if (!themeUrl) {
+    return messageError();
+  }
+
+  const arrayThemes = listThemes();
+  const validateTheme = arrayThemes.filter((theme) => theme == themeUrl)[0];
+
+  if (!validateTheme) {
+    return messageError();
+  }
+
+  
+  const urlRequestTheme = getUrlByTheme(themeUrl);
+
+  return urlRequestTheme;
+};
+
 const startNewGame = async () => {
+  const theme = getThemeUrl();
+
   letterIndexInWord = [];
   choisenLetter = [];
   amountErrors = 0;
@@ -31,7 +55,7 @@ const startNewGame = async () => {
   cleanElement("#cardPalavra");
   changeHangmanImage(amountErrors);
 
-  const { status, payload } = await requestAPI();
+  const { status, payload } = await requestAPI(theme);
 
   if (status == "error") {
     return messageError();
@@ -93,4 +117,4 @@ export const existeNaPalavra = (e) => {
 document.addEventListener("DOMContentLoaded", startNewGame);
 document
   .getElementById("btnPalavraAleatoria")
-  .addEventListener("click", startNewGame);
+  ?.addEventListener("click", startNewGame);
