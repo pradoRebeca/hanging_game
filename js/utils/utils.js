@@ -1,5 +1,3 @@
-import { messageError } from "./messages.js";
-
 export const alphabet = [
   "A",
   "B",

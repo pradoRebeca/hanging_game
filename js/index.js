@@ -18,14 +18,12 @@ import {
 
 let arrayWord = [];
 let word = "";
-let letterWord = [];
 let choisenLetter = [];
 let letterIndexInWord = [];
 let amountErrors = [];
 let replaceWord = 0;
 
 const startNewGame = async () => {
-  letterWord = [];
   letterIndexInWord = [];
   choisenLetter = [];
   amountErrors = 0;
@@ -36,7 +34,6 @@ const startNewGame = async () => {
   const { status, payload } = await requestAPI();
 
   if (status == "error") {
-    // console.log("error", status.error);
     return messageError();
   }
 
@@ -49,16 +46,7 @@ const startNewGame = async () => {
   );
   replaceWord.map((caractere) => changeElementCaractere(caractere));
 
-  // arrayGenerated.arrayWord.map((letter) => {
-  //   const caractere = validateCaractere(letter);
-  //   replaceWord.push(caractere);
-  //   changeElementCaractere(caractere);
-  // });
-
-};
-
-const listAlphabet = () => {
-  return alphabet.map((item) => showAlphabet(item));
+  alphabet.map((item) => showAlphabet(item));
 };
 
 const formarPalavra = () => {
@@ -78,14 +66,15 @@ export const existeNaPalavra = (e) => {
     return;
   }
 
-  choisenLetter.push(letter);
-  showChoisenLetter(choisenLetter);
-
   if (amountErrors == 6) {
     return messageEndGame(startNewGame, word);
   }
 
+  choisenLetter.push(letter);
+  showChoisenLetter(choisenLetter);
+
   const verify = verifyLetterInWord(letter, arrayWord);
+
   if (!verify) {
     amountErrors = amountErrors + 1;
     changeHangmanImage(amountErrors);
@@ -98,11 +87,9 @@ export const existeNaPalavra = (e) => {
       letterIndexInWord.push({ indice: index, letra: letter })
   );
 
-  letterWord.push(letter);
   formarPalavra();
 };
 
-document.addEventListener("DOMContentLoaded", listAlphabet);
 document.addEventListener("DOMContentLoaded", startNewGame);
 document
   .getElementById("btnPalavraAleatoria")
