@@ -20,3 +20,11 @@ export function messageEndGame(startNewGame, word) {
     }
   });
 }
+
+export function messageError() {
+  swal({
+    title: "Ops, Algo deu errado" ,
+    text: "Volte para home e tente novamente" ,
+    icon: "error",
+  });
+}

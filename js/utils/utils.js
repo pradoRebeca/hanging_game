@@ -1,3 +1,5 @@
+import { messageError } from "./messages.js";
+
 export const alphabet = [
   "A",
   "B",
@@ -40,21 +42,35 @@ export const nameImages = [
 export function validateCaractere(caractere) {
   if (caractere == "-" || caractere == "(" || caractere == ")") {
     return caractere;
-  } else if (caractere == " ") {
-    return "-";
-  } else {
-    return "_";
   }
+
+  if (caractere == " ") {
+    return "-";
+  }
+
+  return "_";
 }
 
 export function verifyLetterInWord(letter, arrayWord) {
-  const verify = arrayWord.filter(
-    (item) => item == letter.toUpperCase() || item == letter.toLowerCase()
-  );
+  const verify = arrayWord.filter((item) => item == letter.toUpperCase());
 
-  if (verify.length > 0) {
-    return verify;
-  }
+  return verify.length > 0;
+}
 
-  return false;
+export function generateWordArray(json) {
+  let arrayLetterWord = json.map((obj) => obj.nome);
+  let randomNumber = Math.floor(Math.random() * arrayLetterWord.length + 1);
+
+  const word = arrayLetterWord
+    .filter((_item, index) => index === randomNumber)
+    .toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+  const arrayWord = word.toUpperCase().split("");
+
+  return {
+    word,
+    arrayWord,
+  };
 }

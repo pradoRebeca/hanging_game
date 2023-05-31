@@ -1,5 +1,5 @@
 import { existeNaPalavra } from "../index.js";
-import { nameImages, validateCaractere } from "./utils.js";
+import { nameImages } from "./utils.js";
 
 export function showChoisenLetter(choisenLetter) {
   const container = document.querySelector("#cardLetrasEscolhidas");
@@ -13,13 +13,12 @@ export function showChoisenLetter(choisenLetter) {
   }
 }
 
-export function replaceWordWithUnderline(letter) {
+export function changeElementCaractere(letter) {
   const container = document.querySelector("#cardPalavra");
   const div = document.createElement("p");
-  let caractere = validateCaractere(letter);
 
   div.classList.add("caractere");
-  div.innerHTML = caractere;
+  div.innerHTML = letter;
 
   container.appendChild(div);
 }
@@ -36,16 +35,6 @@ export function showAlphabet(letter) {
   container.appendChild(div);
 }
 
-export function showLetterInWord(letter) {
-  const container = document.querySelector("#cardPalavra");
-  const div = document.createElement("p");
-
-  div.classList.add("caractere");
-  div.innerHTML = letter;
-
-  container.appendChild(div);
-}
-
 export function cleanElement(elementName) {
   const elemento = document.querySelector(elementName);
   while (elemento.firstChild) {
@@ -55,7 +44,7 @@ export function cleanElement(elementName) {
 
 export function changeHangmanImage(amountErrors) {
   const img = document.getElementById("imgPersonagem");
-  const image =  nameImages.filter((_image, index) => index == amountErrors)[0]
+  const image = nameImages.filter((_image, index) => index == amountErrors)[0];
 
-  img.src = `../img/${image}`
+  img.src = `../img/${image}`;
 }

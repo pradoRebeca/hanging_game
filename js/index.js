@@ -1,47 +1,60 @@
 "use strict";
-import { messageEndGame } from "./utils/messages.js";
-
+import { messageEndGame, messageError } from "./utils/messages.js";
+import { requestAPI } from "./api.js";
 import {
+  changeElementCaractere,
   changeHangmanImage,
   cleanElement,
-  replaceWordWithUnderline,
   showAlphabet,
   showChoisenLetter,
-  showLetterInWord,
 } from "./utils/connectionElements.js";
 
 import {
   alphabet,
   validateCaractere,
   verifyLetterInWord,
+  generateWordArray,
 } from "./utils/utils.js";
 
-let arrayPalavra;
+let arrayWord = [];
+let word = "";
+let letterWord = [];
+let choisenLetter = [];
+let letterIndexInWord = [];
+let amountErrors = [];
+let replaceWord = 0;
 
-let nomePais;
-let letrasDaPalavra = [];
-let letrasEscolhidas = [];
-var letterIndexInWord = [];
-let quantidadeErros = 0;
-
-const ListarPais = async () => {
-  letrasDaPalavra = [];
+const startNewGame = async () => {
+  letterWord = [];
   letterIndexInWord = [];
-  letrasEscolhidas = [];
-  quantidadeErros = 0;
+  choisenLetter = [];
+  amountErrors = 0;
   cleanElement("#cardLetrasEscolhidas");
   cleanElement("#cardPalavra");
-  changeHangmanImage(quantidadeErros);
+  changeHangmanImage(amountErrors);
 
-  const urlListar = `https://servicodados.ibge.gov.br/api/v1/localidades/paises?orderBy=nome`;
-  const options = {
-    method: "GET",
-  };
+  const { status, payload } = await requestAPI();
 
-  await fetch(urlListar, options)
-    .then((resp) => resp.json())
-    .then((json) => palavraGerada(json))
-    .catch((err) => console.log(err));
+  if (status == "error") {
+    // console.log("error", status.error);
+    return messageError();
+  }
+
+  const arrayGenerated = generateWordArray(payload);
+
+  word = arrayGenerated.word;
+  arrayWord = arrayGenerated.arrayWord;
+  replaceWord = arrayGenerated.arrayWord.map((letter) =>
+    validateCaractere(letter)
+  );
+  replaceWord.map((caractere) => changeElementCaractere(caractere));
+
+  // arrayGenerated.arrayWord.map((letter) => {
+  //   const caractere = validateCaractere(letter);
+  //   replaceWord.push(caractere);
+  //   changeElementCaractere(caractere);
+  // });
+
 };
 
 const listAlphabet = () => {
@@ -50,67 +63,47 @@ const listAlphabet = () => {
 
 const formarPalavra = () => {
   cleanElement("#cardPalavra");
-  const replace = arrayPalavra.map(
-    (caractere) => (caractere = validateCaractere(caractere))
+
+  letterIndexInWord.filter(
+    ({ indice, letra }) => (replaceWord[indice] = letra)
   );
-
-  letterIndexInWord.map(({ indice, letra }) => (replace[indice] = letra));
-
-  replace.map((caractere) => showLetterInWord(caractere));
+  replaceWord.map((caractere) => changeElementCaractere(caractere));
 };
 
 export const existeNaPalavra = (e) => {
-  const letra = e.target.id;
-  const letterRepeted = verifyLetterInWord(letra, letrasEscolhidas);
+  const letter = e.target.id;
+  const letterRepeted = verifyLetterInWord(letter, choisenLetter);
 
   if (letterRepeted) {
     return;
   }
 
-  letrasEscolhidas.push(letra);
-  showChoisenLetter(letrasEscolhidas);
+  choisenLetter.push(letter);
+  showChoisenLetter(choisenLetter);
 
-  if (quantidadeErros == 6) {
-    return messageEndGame(ListarPais, nomePais);
+  if (amountErrors == 6) {
+    return messageEndGame(startNewGame, word);
   }
 
-  const verify = verifyLetterInWord(letra, arrayPalavra);
-
+  const verify = verifyLetterInWord(letter, arrayWord);
   if (!verify) {
-    quantidadeErros = quantidadeErros + 1;
-    changeHangmanImage(quantidadeErros);
+    amountErrors = amountErrors + 1;
+    changeHangmanImage(amountErrors);
     return;
   }
 
-  arrayPalavra.filter(
+  arrayWord.filter(
     (letterWord, index) =>
-      letterWord == letra &&
-      letterIndexInWord.push({ indice: index, letra: letra })
+      letterWord == letter &&
+      letterIndexInWord.push({ indice: index, letra: letter })
   );
 
-  letrasDaPalavra.push(letra);
+  letterWord.push(letter);
   formarPalavra();
 };
 
-const palavraGerada = (json) => {
-  let arrayNomePais = json.map((obj) => obj.nome);
-
-  let numero = Math.floor(Math.random() * arrayNomePais.length + 1);
-
-  nomePais = arrayNomePais
-    .filter((_item, index) => index === numero)
-    .toString()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toUpperCase();
-
-  arrayPalavra = nomePais.split("");
-
-  arrayPalavra.map((letra) => replaceWordWithUnderline(letra));
-};
-
 document.addEventListener("DOMContentLoaded", listAlphabet);
-document.addEventListener("DOMContentLoaded", ListarPais);
+document.addEventListener("DOMContentLoaded", startNewGame);
 document
   .getElementById("btnPalavraAleatoria")
-  .addEventListener("click", ListarPais);
+  .addEventListener("click", startNewGame);
