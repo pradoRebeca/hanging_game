@@ -67,5 +67,5 @@ export function changeHangmanImage(amountErrors) {
   }
 
   const image = nameImages.filter((_image, index) => index == amountErrors)[0];
-  img.src = `../img/${image}`;
+  img.src = `./img/${image}`;
 }
