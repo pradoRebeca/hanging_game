@@ -9,5 +9,5 @@ Projeto simples com o objetivo de ser passatempo e aprimorar lógica
 * Segunda versão do projeto com tem duas interfaces onde é possível escolher entre os temas disponíveis
 * Os temas são recursos de APIs públicas
 * Foi utilizado tailwind.css para estilização 
-
+* Código refatorado
 
