@@ -53,9 +53,9 @@ export const themes = [
     name: "Rick and Morty",
     url: "https://rickandmortyapi.com/api/character",
   },
-  {
-    id: "4",
-    name: "Star Wars",
-    url: "https://swapi.dev/api/people",
-  },
+  // {
+  //   id: "4",
+  //   name: "Star Wars",
+  //   url: "https://swapi.dev/api/people",
+  // },
 ];
