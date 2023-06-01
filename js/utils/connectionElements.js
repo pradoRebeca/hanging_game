@@ -1,6 +1,4 @@
-import { setGameTheme } from "../home.js";
-import { existeNaPalavra } from "../index.js";
-import { nameImages } from "./utils.js";
+import { nameImages } from "./lists.js";
 
 export function showChoisenLetter(choisenLetter) {
   const container = document.querySelector("#cardLetrasEscolhidas");
@@ -24,41 +22,50 @@ export function changeElementCaractere(letter) {
   container.appendChild(div);
 }
 
-export function showAlphabet(letter) {
-  const container = document.querySelector("#cardLetra");
+export function showElement({
+  element,
+  classStyle,
+  content,
+  id,
+  functionClick,
+}) {
+  const container = document.querySelector(element);
   const div = document.createElement("div");
 
-  div.classList.add("letras");
-  div.id = letter;
-  div.innerHTML = letter;
-  div.onclick = existeNaPalavra;
+  div.classList.add(classStyle);
+  div.id = id;
+  div.innerHTML = content;
 
-  container.appendChild(div);
-}
-
-export function showThemes(theme) {
-  const container = document.querySelector("#card-theme");
-  const div = document.createElement("div");
-
-  div.classList.add("cardTheme");
-  div.id = theme;
-  div.innerHTML = theme;
-  div.onclick = setGameTheme;
+  if (functionClick) {
+    div.onclick = functionClick;
+  }
 
   container.appendChild(div);
 }
 
 export function cleanElement(elementName) {
-  const elemento = document.querySelector(elementName);
-  while (elemento?.firstChild) {
-    elemento.removeChild(elemento.lastChild);
+  let arrayElementName = elementName;
+
+  if (!Array.isArray(elementName)) {
+    arrayElementName = [elementName];
+  }
+
+  for (let item of arrayElementName) {
+    const element = document.querySelector(item);
+
+    while (element?.firstChild) {
+      element.removeChild(element.lastChild);
+    }
   }
 }
 
 export function changeHangmanImage(amountErrors) {
   const img = document.getElementById("imgPersonagem");
 
-  const image = nameImages.filter((_image, index) => index == amountErrors)[0];
+  if (!img) {
+    return;
+  }
 
+  const image = nameImages.filter((_image, index) => index == amountErrors)[0];
   img.src = `../img/${image}`;
 }

@@ -1,20 +1,21 @@
-import { themes } from "./api.js";
-import { showThemes } from "./utils/connectionElements.js";
-
-import { listThemes } from "./utils/utils.js";
-
-console.log("home");
+import { showElement } from "./utils/connectionElements.js";
+import { themes } from "./utils/lists.js";
 
 const listThemesView = () => {
-  const arrayThemes = listThemes();
+  const configElement = {
+    element: "#card-theme",
+    classStyle: "titleTheme",
+    functionClick: setGameTheme,
+  };
 
-  arrayThemes.map((theme) => showThemes(theme));
+  themes.map((item) =>
+  showElement({ ...configElement, content: item.name, id: item.id })
+  );
 };
 
 export const setGameTheme = (e) => {
-  const nameTheme = e.target.id;
-console.log("nameTheme", nameTheme)
-  window.location.href = `index.html?theme=${nameTheme}`;
+  const idTheme = e.target.id;
+  window.location.href = `index.html?theme=${idTheme}`;
 };
 
 document.addEventListener("DOMContentLoaded", listThemesView);

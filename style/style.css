@@ -5,9 +5,9 @@
     font-family: 'verdana';
 }
 
-:cores{
+/* :cores{
     --text--color: #4b7db3; 
-}
+} */
 
 body{
     width: 100vw;
@@ -93,8 +93,24 @@ body{
     flex-wrap: wrap;
 }
 
+.buttonStyle{
+    width: 160px;
+    height: 40px;
+    background-color: #4b7db3;
+    border: 0px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: 700;
+}
 
-#btnPalavraAleatoria{
+.buttonStyle:hover{
+    cursor: pointer;
+    background-color: #78a2cf;
+}
+
+
+/* #btnPalavraAleatoria{
     width: 160px;
     height: 40px;
     background-color: #4b7db3;
@@ -108,7 +124,7 @@ body{
 #btnPalavraAleatoria:hover{
     cursor: pointer;
     background-color: #78a2cf;
-}
+} */
 
 
 
@@ -170,8 +186,22 @@ body{
     border-radius: 10px;
 }
 
+#nameTheme{
+    background-color: #f5f2f2;
+  /* background-color: #f7b925; */
+  max-width: 70vw;
+  height: 60px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  font-size: x-large;
+}
+
 .letrasEscolhidas{
-/* background-color: aquamarine; */
     margin-left: 2px;
 }
 
@@ -182,8 +212,7 @@ body{
 
 
 .swal-button {
-    /* padding: 7px 19px;
-    border-radius: 2px; */
+  
     background-color: #4b7db3;
     /* font-size: 12px; */
     border: 1px solid #4b7db3;

@@ -1,21 +1,21 @@
 "use strict";
 import { messageEndGame, messageError } from "./utils/messages.js";
 import { requestAPI } from "./api.js";
+import { alphabet } from "./utils/lists.js";
+
 import {
   changeElementCaractere,
   changeHangmanImage,
   cleanElement,
-  showAlphabet,
+  showElement,
   showChoisenLetter,
 } from "./utils/connectionElements.js";
 
 import {
-  alphabet,
   validateCaractere,
   verifyLetterInWord,
   generateWordArray,
-  listThemes,
-  getUrlByTheme,
+  getUrlByID,
 } from "./utils/utils.js";
 
 let arrayWord = [];
@@ -25,43 +25,59 @@ let letterIndexInWord = [];
 let amountErrors = [];
 let replaceWord = 0;
 
-const getThemeUrl = () => {
-  const themeUrl = location.search.split("=")[1];
+// let handleWord = {
+//   arrayWord: ["1", "2"],
+//   word: "abcde",
+//   choisenLetter: [],
+//   letterIndexInWord: [],
+//   amountErrors: 0,
+//   replaceWord: [],
+// };
 
-  if (!themeUrl) {
-    return messageError();
-  }
+// const resetValuesObject = (object) => {
+//   let newObject = {};
 
-  const arrayThemes = listThemes();
-  const validateTheme = arrayThemes.filter((theme) => theme == themeUrl)[0];
-
-  if (!validateTheme) {
-    return messageError();
-  }
-
-  
-  const urlRequestTheme = getUrlByTheme(themeUrl);
-
-  return urlRequestTheme;
-};
+//   for (let [key, value] of Object.entries(object)) {
+//     newObject[key] = Array.isArray(value) ? [] : "";
+//   }
+// };
 
 const startNewGame = async () => {
-  const theme = getThemeUrl();
+  // resetValuesObject(handleWord);
 
   letterIndexInWord = [];
   choisenLetter = [];
   amountErrors = 0;
-  cleanElement("#cardLetrasEscolhidas");
-  cleanElement("#cardPalavra");
+  cleanElement([
+    "#cardLetrasEscolhidas",
+    "#cardPalavra",
+    "#nameTheme",
+    "#cardLetra",
+  ]);
+
   changeHangmanImage(amountErrors);
 
-  const { status, payload } = await requestAPI(theme);
+  const idTheme = location.search.split("=")[1];
+
+  if (!idTheme) {
+    return messageError();
+  }
+
+  const { url, name } = getUrlByID(idTheme);
+
+  if (!url) {
+    return messageError();
+  }
+
+  const { status, payload } = await requestAPI(url);
 
   if (status == "error") {
     return messageError();
   }
 
   const arrayGenerated = generateWordArray(payload);
+
+  console.log("arrayGenerated", arrayGenerated);
 
   word = arrayGenerated.word;
   arrayWord = arrayGenerated.arrayWord;
@@ -70,7 +86,24 @@ const startNewGame = async () => {
   );
   replaceWord.map((caractere) => changeElementCaractere(caractere));
 
-  alphabet.map((item) => showAlphabet(item));
+  const configElement = {
+    element: "#cardLetra",
+    classStyle: "letras",
+
+    functionClick: existeNaPalavra,
+  };
+
+  let configElementTheme = {
+    element: "#nameTheme",
+    classStyle: "nameTheme",
+    content: name,
+  };
+
+  showElement(configElementTheme);
+
+  alphabet.map((item) =>
+    showElement({ ...configElement, content: item, id: item })
+  );
 };
 
 const formarPalavra = () => {
@@ -114,6 +147,11 @@ export const existeNaPalavra = (e) => {
   formarPalavra();
 };
 
+const redirectHome = () => {
+  window.location.href = "home.html";
+};
+
+document.getElementById("changeTheme").addEventListener("click", redirectHome);
 document.addEventListener("DOMContentLoaded", startNewGame);
 document
   .getElementById("btnPalavraAleatoria")

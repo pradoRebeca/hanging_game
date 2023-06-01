@@ -1,43 +1,4 @@
-import { themes } from "../api.js";
-
-export const alphabet = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-];
-
-export const nameImages = [
-  "hangman.jpg",
-  "head.jpg",
-  "trunk.jpg",
-  "armLeft.jpg",
-  "armRigth.jpg",
-  "legRigth.jpg",
-  "body.jpg",
-];
+import { themes } from "./lists.js";
 
 export function validateCaractere(caractere) {
   if (caractere == "-" || caractere == "(" || caractere == ")") {
@@ -58,11 +19,9 @@ export function verifyLetterInWord(letter, arrayWord) {
 }
 
 export function generateWordArray(json) {
-  let arrayLetterWord = json.map((obj) => obj.nome);
-  let randomNumber = Math.floor(Math.random() * arrayLetterWord.length + 1);
+  let arrayLetterWord = json.map((obj) => obj.name);
 
-  const word = arrayLetterWord
-    .filter((_item, index) => index === randomNumber)
+  const word = generateRandomWord(arrayLetterWord)
     .toString()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
@@ -75,14 +34,29 @@ export function generateWordArray(json) {
   };
 }
 
-export function listThemes() {
-  const arrayKeys = Object.keys(themes);
-
-  return arrayKeys.map((theme) => themes[theme].name);
+export function generateRandomWord(array) {
+  let randomNumber = Math.floor(Math.random() * array.length + 1);
+  return array.filter((_item, index) => index === randomNumber);
 }
 
-export function getUrlByTheme(theme) {
-  const arrayKeys = Object.values(themes);
-  const infoTheme = arrayKeys.filter((item) => item.name == theme);
-  return infoTheme.url
+export function getUrlByID(id) {
+  const infoTheme = themes.filter((item) => item.id == id)[0];
+
+  if (!infoTheme) {
+    return false;
+  }
+
+  return infoTheme;
+}
+
+export function validateResponseAPI(json) {
+  if (json.results) {
+    return json.results;
+  }
+
+  if (!Array.isArray(json)) {
+    return [];
+  }
+
+  return json.map((item) => ({ name: item.nome }));
 }
