@@ -1,5 +1,9 @@
 "use strict";
-import { messageEndGame, messageError } from "./utils/messages.js";
+import {
+  messageEndGame,
+  messageError,
+  messageWinnerGame,
+} from "./utils/messages.js";
 import { requestAPI } from "./api.js";
 import { alphabet } from "./utils/lists.js";
 
@@ -25,29 +29,7 @@ let letterIndexInWord = [];
 let amountErrors = [];
 let replaceWord = 0;
 
-// let handleWord = {
-//   arrayWord: ["1", "2"],
-//   word: "abcde",
-//   choisenLetter: [],
-//   letterIndexInWord: [],
-//   amountErrors: 0,
-//   replaceWord: [],
-// };
-
-// const resetValuesObject = (object) => {
-//   let newObject = {};
-
-//   for (let [key, value] of Object.entries(object)) {
-//     newObject[key] = Array.isArray(value) ? [] : "";
-//   }
-// };
-
 const startNewGame = async () => {
-  // resetValuesObject(handleWord);
-
-  letterIndexInWord = [];
-  choisenLetter = [];
-  amountErrors = 0;
   cleanElement([
     "#cardLetrasEscolhidas",
     "#cardPalavra",
@@ -55,52 +37,53 @@ const startNewGame = async () => {
     "#cardLetra",
   ]);
 
+  letterIndexInWord = [];
+  choisenLetter = [];
+  amountErrors = 0;
+
   changeHangmanImage(amountErrors);
 
   const idTheme = location.search.split("=")[1];
-
   if (!idTheme) {
     return messageError();
   }
 
   const { url, name } = getUrlByID(idTheme);
-
   if (!url) {
     return messageError();
   }
 
   const { status, payload } = await requestAPI(url);
-
   if (status == "error") {
     return messageError();
   }
 
   const arrayGenerated = generateWordArray(payload);
-
   word = arrayGenerated.word;
-  arrayWord = arrayGenerated.arrayWord;
-  replaceWord = arrayGenerated.arrayWord.map((letter) =>
-    validateCaractere(letter)
-  );
-  replaceWord.map((caractere) => changeElementCaractere(caractere));
 
-  const configElement = {
-    element: "#cardLetra",
-    classStyle: "letras",
+  replaceWord = arrayGenerated.arrayWord.map((letter) => {
+    arrayWord.push(letter);
+    const caractere = validateCaractere(letter);
+    changeElementCaractere(caractere);
+    return caractere;
+  });
 
-    functionClick: existeNaPalavra,
-  };
+  console.log("word", arrayWord);
 
-  let configElementTheme = {
+  showElement({
     element: "#nameTheme",
     classStyle: "nameTheme",
     content: name,
-  };
-
-  showElement(configElementTheme);
+  });
 
   alphabet.map((item) =>
-    showElement({ ...configElement, content: item, id: item })
+    showElement({
+      element: "#cardLetra",
+      classStyle: "letras",
+      content: item,
+      id: item,
+      functionClick: existeNaPalavra,
+    })
   );
 };
 
@@ -142,7 +125,11 @@ export const existeNaPalavra = (e) => {
       letterIndexInWord.push({ indice: index, letra: letter })
   );
 
-  formarPalavra();
+  if (letterIndexInWord.length == arrayWord.length) {
+    messageWinnerGame();
+  }
+
+ return formarPalavra();
 };
 
 const redirectHome = () => {

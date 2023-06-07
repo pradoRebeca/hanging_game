@@ -5,7 +5,7 @@ export function showChoisenLetter(choisenLetter) {
   const p = document.createElement("p");
 
   p.classList.add("letrasEscolhidas");
-
+console.log("teste")
   if (choisenLetter.length != 0) {
     choisenLetter.map((letter) => (p.innerHTML = letter));
     container.appendChild(p);

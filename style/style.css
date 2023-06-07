@@ -1,51 +1,12 @@
-*{
-	margin: 0px;
-	padding: 0px;
-	box-sizing: border-box;
-    font-family: 'verdana';
-}
-
-/* :cores{
-    --text--color: #4b7db3; 
-} */
-
-body{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-#cardLetra{
-    /* background-color: #ebebeb; */
-    background-color: #f5f2f2;
-    display: flex;
-    max-width: 70vw;
-    min-height: 30vh;
-    padding: 20px;
-    flex-wrap: wrap;
-    justify-content:center;
-    align-items: center;
-    border-radius: 20px;
-    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
-    /* box-shadow: 1px 2px 1em #d1d1d1; */
-}
-
 .letras{
-    margin-left: 5px;
-    margin-right: 5px;
     font-size: 2em;
-    /* background-color: yellow; */
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    margin-bottom: 10px;
-    /* border-color:  var(--text--color); */
+    margin: 5px;
     border: 2px solid #4b7db3;
 }
 
@@ -53,170 +14,24 @@ body{
     cursor: pointer;
     background-color: #4b7db3;
     color: white;
-    /* width: 45px;
-    height: 45px; */
-}
-
-
-#cardPersonagem{
-    max-width: 20vw;
-    max-height: 20vw;
-    /* background-color: #4b7db3; */
-}
-
-#imgPersonagem{
-    max-width: inherit;
-    max-height: inherit;
-}
-
-#cardPalavraPersonagem{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    justify-content: center;
-    /* flex-wrap: wrap; */
-    max-width: 70vw;
-    margin-bottom: 20px;
-    /* background-color: yellow; */
-    min-height: 20vh;
-    /* border: 2px solid #4b7db3; */
-}
-
-#cardPalavra{
-    /* border: 2px solid #4b7db3; */
-    background-color: #4b7db3;
-    border-radius: 20px;
-    width: 50vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.buttonStyle{
-    width: 160px;
-    height: 40px;
-    background-color: #4b7db3;
-    border: 0px;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 0.9em;
-    font-weight: 700;
-}
-
-.buttonStyle:hover{
-    cursor: pointer;
-    background-color: #78a2cf;
-}
-
-
-/* #btnPalavraAleatoria{
-    width: 160px;
-    height: 40px;
-    background-color: #4b7db3;
-    border: 0px;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 0.9em;
-    font-weight: 700;
-}
-
-#btnPalavraAleatoria:hover{
-    cursor: pointer;
-    background-color: #78a2cf;
-} */
-
-
-
-#cardButtonInput{
-    /* background-color: yellow; */
-    /* flex-wrap: wrap; */
-    max-width: 70vw;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
- 
-}
-
-#cardInput{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    /* background-color: aqua; */
-}
-
-#cardInput > p{
-    /* background-color: aliceblue; */
-    margin-right: 10px;
-    font-size: 1em;
-}
-
-#cardInput > input {
-    width: 250px;
-    height: 40px;
-    border-radius: 5px;
-    font-size: 1em;
-    border: 2px solid #4b7db3;
-    /* border-bottom:  2px solid #4b7db3; */
-}
-
-.caractere{
-    /* background-color: yellow; */
-    color: white;
-    text-align: center;
-    width: 28px;
-    height: 30px;
-    font-size: 2em;
-}
-
-#cardLetrasEscolhidas{
-      background-color: #f5f2f2;
-    /* background-color: #f7b925; */
-    max-width: 70vw;
-    height: 30px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 10px;
-}
-
-#nameTheme{
-    background-color: #f5f2f2;
-  /* background-color: #f7b925; */
-  max-width: 70vw;
-  height: 60px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-radius: 10px;
-  font-size: x-large;
 }
 
 .letrasEscolhidas{
-    margin-left: 2px;
+    margin-right: 5px;
 }
 
+.caractere{
+    font-size: 1.5em;
+    margin: 5px;
+}
 
 .swal-overlay {
-    background-color: rgba(75, 125, 179, 0.45);
-  }
-
+    background-color: rgba(10, 10, 10, 0.45);
+}
 
 .swal-button {
-  
     background-color: #4b7db3;
-    /* font-size: 12px; */
     border: 1px solid #4b7db3;
-    /* text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3); */
   }
 
   

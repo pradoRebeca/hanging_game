@@ -7,29 +7,29 @@
     <link href="./style/style.css"
 		  type="text/css"
 		  rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./js/play.js" type="module"></script>
 
     <title>Jogo da Forca</title>
 </head>
-<body>
-    <div>
-        <div id="nameTheme"></div>
-
-        <div id="cardPalavraPersonagem">
-            <div id="cardPersonagem">
-                <img id="imgPersonagem" src='' />
+<body  class="h-screen w-screen flex flex-col items-center justify-center font-['verdana']">
+        <div id="nameTheme" class="w-2/3 h-auto bg-[#4b7db3] flex items-center justify-center py-4 mb-10 text-2xl text-white rounded-2xl"></div>
+        <div id="cardPalavraPersonagem" class="flex items-center justify-between w-2/3 mb-5 h-44">
+            <div id="cardPersonagem" class="h-full w-auto flex items-center justify-center bg-white mr-10">
+                <img id="imgPersonagem" src='' class="h-full w-fit" />
             </div>
-            <div id="cardPalavra"></div>
+            <div id="cardPalavra" class="rounded-2xl h-full bg-[#4b7db3] w-full flex items-center justify-center text-white">
+                <p> aaaa</p>
+            </div>        
         </div>
-       <div id="cardLetrasEscolhidas"></div>
-
-        <div id="cardLetra"></div>
-
-        <div id="cardButtonInput">
-            <button id="btnPalavraAleatoria" class="buttonStyle">Outra Palavra</button>
-            <button id="changeTheme" class="buttonStyle">trocar de tema</button>
+        <div id="cardLetrasEscolhidas" class="bg-[#f5f2f2] rounded-lg w-2/3 h-10 py-2 flex items-center justify-center mb-5"></div>
+    
+        <div id="cardLetra" class="bg-[#f5f2f2] rounded-lg w-2/3 h-auto p-6 flex items-center justify-center flex-wrap "></div>
+        <div id="cardButtonInput" class="flex justify-between items-center w-2/3 mt-5">
+            <button id="btnPalavraAleatoria" class="w-40 h-auto bg-[#4b7db3] p-3 rounded-lg text-white hover:pointer hover:bg-[#78a2cf]">Outra Palavra</button>
+            <button id="changeTheme" class="w-40 h-auto bg-[#4b7db3] rounded-lg p-3 text-white hover:pointer hover:bg-[#78a2cf]">Trocar Tema</button>
         </div>
-    </div>
 </body>
 </html>

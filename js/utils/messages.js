@@ -21,6 +21,14 @@ export function messageEndGame(startNewGame, word) {
   });
 }
 
+export function messageWinnerGame() {
+  swal({
+    title: "Parabéns!!" ,
+    text: "Você acertou mais uma palavra!" ,
+  });
+
+}
+
 export function messageError() {
   swal({
     title: "Ops, Algo deu errado" ,
