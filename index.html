@@ -14,7 +14,32 @@
 
       <title>Home</title>
   </head>
-  <body class="h-screen w-screen flex flex-col items-center justify-center font-['verdana']">
+
+<body class="h-screen w-screen font-['verdana'] grid gap-1 grid-1">
+    <div class="m-6 flex flex-col justify-center items-center">
+      <div class="h-auto w-full p-2 bg-[#4b7db3] shadow-lg text-2xl text-white rounded-2xl flex justify-center items-center">
+        <h1>Jogo da forca</h1>
+      </div>
+
+      <div class="w-24 h-24 object-contain mt-4 lg:hidden">
+        <img  src="./img/hangman.jpg" alt="imagem de forca">
+      </div>
+
+      <div class="mt-4 p-4 w-full h-auto rounded-lg shadow-lg rounded-2xl lg:flex">
+        <div class="lg:w-1/2">
+          <p class="w-full flex justify-center items-centerfont-semibold">Escolha o tema do jogo</p>
+          <div class="" id="card-theme"></div>
+        </div>
+  
+        <div class="hidden lg:flex lg:w-1/2 h-auto items-center justify-center object-contain">
+          <img src="./img/hangman.jpg" alt="imagem de forca">
+        </div>
+      </div>
+  </div>
+
+</body>
+
+  <!-- <body class="h-screen w-screen flex flex-col items-center justify-center font-['verdana']">
       <div class="w-2/3 h-auto bg-[#4b7db3] flex items-center justify-center py-4 mb-10 text-2xl text-white rounded-2xl">
         <h1>Jogo da forca</h1>
       </div>
@@ -30,5 +55,5 @@
           <img src="./img/hangman.jpg" alt="imagem de forca">
         </div>
       </div>
-  </body>
+  </body> -->
 </html>
